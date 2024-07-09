@@ -66,12 +66,15 @@ export async function processCronTrigger(event) {
       if (!monitor.expectKeyword) return true
 
       if (bodyText.includes(monitor.expectKeyword)) {
+        console.log(`Monitor ${monitor.name} doesn't contain an expected keyword.`)
         return false
       } else {
+        console.log(`Monitor ${monitor.name} contains an expected keyword.`)
         return true
       }
     }
     const monitorOperational = expectedStatus && expectedKeyword()
+    console.log(`Monitor ${monitor.name} operational? ${monitorOperational}`)
     const monitorStatusChanged =
       monitorsState.monitors[monitor.id].lastCheck.operational !==
       monitorOperational
