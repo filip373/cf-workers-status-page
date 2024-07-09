@@ -63,7 +63,9 @@ export async function processCronTrigger(event) {
     const expectedKeyword = function() {
       if (fetchMethod !== 'GET') return true
       if (!monitor.expectKeyword) return true
-      if (checkResponse.body.indexOf(monitor.expectKeyword) === -1) {
+
+      const bodyText = await checkResponse.text()
+      if (bodyText.includes(monitor.expectKeyword)) {
         return false
       } else {
         return true
