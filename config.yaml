@@ -38,5 +38,5 @@ monitors:
     url: 'https://ssh.powolutku.com'
     method: GET
     expectStatus: 200
-    expectKeyword: 'something'
+    expectKeyword: 'somethalksdfaskjdfasdfjkafkasdfing'
     followRedirect: true
