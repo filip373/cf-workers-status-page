@@ -36,6 +36,7 @@ monitors:
   - id: ssh.powolutku.com
     name: ssh.powolutku.com
     url: 'https://ssh.powolutku.com'
-    method: HEAD
+    method: GET
     expectStatus: 200
+    expectKeyword: 'something'
     followRedirect: true
