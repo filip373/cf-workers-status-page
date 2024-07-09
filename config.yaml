@@ -21,3 +21,21 @@ monitors:
     method: HEAD
     expectStatus: 200
     followRedirect: true
+  - id: www.powolutku.com
+    name: www.powolutku.com
+    url: 'https://www.powolutku.com'
+    method: HEAD
+    expectStatus: 200
+    followRedirect: true
+  - id: pi-hole.powolutku.com
+    name: pi-hole.powolutku.com
+    url: 'https://pi-hole.powolutku.com'
+    method: HEAD
+    expectStatus: 200
+    followRedirect: true
+  - id: ssh.powolutku.com
+    name: ssh.powolutku.com
+    url: 'https://ssh.powolutku.com'
+    method: HEAD
+    expectStatus: 200
+    followRedirect: true
