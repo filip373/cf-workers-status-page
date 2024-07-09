@@ -63,7 +63,7 @@ export async function processCronTrigger(event) {
     const expectedKeyword = function() {
       if (fetchMethod !== 'GET') return true
       if (!monitor.expectKeyword) return true
-      if(checkResponse.body.indexOf(monitor.expectKeyword) === -1) {
+      if (checkResponse.body.indexOf(monitor.expectKeyword) === -1) {
         return false
       } else {
         return true
