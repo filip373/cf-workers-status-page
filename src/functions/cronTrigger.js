@@ -66,11 +66,11 @@ export async function processCronTrigger(event) {
       if (!monitor.expectKeyword) return true
 
       if (bodyText.includes(monitor.expectKeyword)) {
-        console.log(`Monitor ${monitor.name} doesn't contain an expected keyword.`)
-        return false
-      } else {
         console.log(`Monitor ${monitor.name} contains an expected keyword.`)
         return true
+      } else {
+        console.log(`Monitor ${monitor.name} doesn't contain an expected keyword.`)
+        return false
       }
     }
     const monitorOperational = expectedStatus && expectedKeyword()
