@@ -57,6 +57,7 @@ export async function processCronTrigger(event) {
     const requestStartTime = Date.now()
     const checkResponse = await fetch(monitor.url, init)
     const requestTime = Math.round(Date.now() - requestStartTime)
+    const bodyText = await checkResponse.text()
 
     // Determine whether operational and status changed
     const expectedStatus = checkResponse.status === (monitor.expectStatus || 200)
@@ -64,7 +65,6 @@ export async function processCronTrigger(event) {
       if (fetchMethod !== 'GET') return true
       if (!monitor.expectKeyword) return true
 
-      const bodyText = await checkResponse.text()
       if (bodyText.includes(monitor.expectKeyword)) {
         return false
       } else {
