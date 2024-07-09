@@ -41,9 +41,10 @@ export async function processCronTrigger(event) {
 
     console.log(`Checking ${monitor.name} ...`)
 
+    const fetchMethod = monitor.method || 'GET'
     // Fetch the monitors URL
     const init = {
-      method: monitor.method || 'GET',
+      method: fetchMethod,
       redirect: monitor.followRedirect ? 'follow' : 'manual',
       headers: {
         'User-Agent': config.settings.user_agent || 'cf-worker-status-page',
@@ -58,8 +59,17 @@ export async function processCronTrigger(event) {
     const requestTime = Math.round(Date.now() - requestStartTime)
 
     // Determine whether operational and status changed
-    const monitorOperational =
-      checkResponse.status === (monitor.expectStatus || 200)
+    const expectedStatus = checkResponse.status === (monitor.expectStatus || 200)
+    const expectedKeyword = function() {
+      if (fetchMethod !== 'GET') return true
+      if (!monitor.expectKeyword) return true
+      if(checkResponse.body.indexOf(monitor.expectKeyword) === -1) {
+        return false
+      } else {
+        return true
+      }
+    }
+    const monitorOperational = expectedStatus && expectedKeyword()
     const monitorStatusChanged =
       monitorsState.monitors[monitor.id].lastCheck.operational !==
       monitorOperational
