@@ -6,7 +6,7 @@ webpack_config = "node_modules/flareact/webpack"
 compatibility_date = "2021-07-23"
 
 [triggers]
-crons = ["*/5 0-3 * * *", "15,20,25,30,35,40,45,50,55 4 * * *", "*/5 5-23 * * *"]
+crons = ["*/5 0-1 * * *", "15,20,25,30,35,40,45,50,55 2 * * *", "*/5 3-23 * * *"]
 
 [site]
 bucket = "out"
